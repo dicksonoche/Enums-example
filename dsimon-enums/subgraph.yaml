@@ -1,0 +1,62 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SablierV2LockupDynamic
+    network: mainnet
+    source:
+      address: "0x7cc7e125d83a581ff438608490cc0f7bdff79127"
+      abi: SablierV2LockupDynamic
+      startBlock: 18821269
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - BatchMetadataUpdate
+        - CancelLockupStream
+        - ClaimProtocolRevenues
+        - CreateLockupDynamicStream
+        - MetadataUpdate
+        - RenounceLockupStream
+        - SetComptroller
+        - SetNFTDescriptor
+        - Transfer
+        - TransferAdmin
+        - WithdrawFromLockupStream
+      abis:
+        - name: SablierV2LockupDynamic
+          file: ./abis/SablierV2LockupDynamic.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BatchMetadataUpdate(uint256,uint256)
+          handler: handleBatchMetadataUpdate
+        - event: CancelLockupStream(uint256,indexed address,indexed address,indexed address,uint128,uint128)
+          handler: handleCancelLockupStream
+        - event: ClaimProtocolRevenues(indexed address,indexed address,uint128)
+          handler: handleClaimProtocolRevenues
+        - event: CreateLockupDynamicStream(uint256,address,indexed address,indexed address,(uint128,uint128,uint128),indexed address,bool,bool,(uint128,uint64,uint40)[],(uint40,uint40),address)
+          handler: handleCreateLockupDynamicStream
+        - event: MetadataUpdate(uint256)
+          handler: handleMetadataUpdate
+        - event: RenounceLockupStream(indexed uint256)
+          handler: handleRenounceLockupStream
+        - event: SetComptroller(indexed address,address,address)
+          handler: handleSetComptroller
+        - event: SetNFTDescriptor(indexed address,address,address)
+          handler: handleSetNFTDescriptor
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: TransferAdmin(indexed address,indexed address)
+          handler: handleTransferAdmin
+        - event: WithdrawFromLockupStream(indexed uint256,indexed address,indexed address,uint128)
+          handler: handleWithdrawFromLockupStream
+      file: ./src/sablier-v-2-lockup-dynamic.ts

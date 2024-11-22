@@ -1,0 +1,138 @@
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BatchMetadataUpdate @entity(immutable: true) {
+  id: Bytes!
+  _fromTokenId: BigInt! # uint256
+  _toTokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CancelLockupStream @entity(immutable: true) {
+  id: Bytes!
+  streamId: BigInt! # uint256
+  sender: Bytes! # address
+  recipient: Bytes! # address
+  asset: Bytes! # address
+  senderAmount: BigInt! # uint128
+  recipientAmount: BigInt! # uint128
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClaimProtocolRevenues @entity(immutable: true) {
+  id: Bytes!
+  admin: Bytes! # address
+  asset: Bytes! # address
+  protocolRevenues: BigInt! # uint128
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CreateLockupDynamicStream @entity(immutable: true) {
+  id: Bytes!
+  streamId: BigInt! # uint256
+  funder: Bytes! # address
+  sender: Bytes! # address
+  recipient: Bytes! # address
+  amounts_deposit: BigInt! # uint128
+  amounts_protocolFee: BigInt! # uint128
+  amounts_brokerFee: BigInt! # uint128
+  asset: Bytes! # address
+  cancelable: Boolean! # bool
+  transferable: Boolean! # bool
+  segments: [Bytes!]! # tuple[]
+  range_start: BigInt! # uint40
+  range_end: BigInt! # uint40
+  broker: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MetadataUpdate @entity(immutable: true) {
+  id: Bytes!
+  _tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RenounceLockupStream @entity(immutable: true) {
+  id: Bytes!
+  streamId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SetComptroller @entity(immutable: true) {
+  id: Bytes!
+  admin: Bytes! # address
+  oldComptroller: Bytes! # address
+  newComptroller: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SetNFTDescriptor @entity(immutable: true) {
+  id: Bytes!
+  admin: Bytes! # address
+  oldNFTDescriptor: Bytes! # address
+  newNFTDescriptor: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TransferAdmin @entity(immutable: true) {
+  id: Bytes!
+  oldAdmin: Bytes! # address
+  newAdmin: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawFromLockupStream @entity(immutable: true) {
+  id: Bytes!
+  streamId: BigInt! # uint256
+  to: Bytes! # address
+  asset: Bytes! # address
+  amount: BigInt! # uint128
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
